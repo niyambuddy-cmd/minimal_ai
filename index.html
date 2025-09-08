@@ -4,45 +4,66 @@
   <meta charset="UTF-8">
   <title>My AI Bot</title>
   <style>
-    /* Reset and font */
+    /* Reset + body */
     body, html {
       margin: 0;
       padding: 0;
       height: 100%;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #111, #222);
+      background-color: #0a0a0a;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       color: #fff;
+      overflow-x: hidden;
     }
 
-    /* Main card */
-    .container {
+    /* Center container */
+    .hero {
       background: #1a1a1a;
-      color: #f1f1f1;
-      padding: 2rem 3rem;
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      padding: 3rem 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
       text-align: center;
       max-width: 700px;
       width: 90%;
-      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+      animation: fadeIn 1s ease-out;
     }
 
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-      color: #fff;
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: #00e0ff;
     }
 
     p {
       font-size: 1.2rem;
       color: #ccc;
       margin-bottom: 1.5rem;
+      line-height: 1.5;
     }
 
+    ul {
+      text-align: left;
+      color: #eee;
+      margin: 1rem auto;
+      max-width: 500px;
+      padding-left: 1.2rem;
+    }
+
+    li {
+      margin-bottom: 0.7rem;
+    }
+
+    /* Fade-in animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Optional: style links */
     a {
       color: #00e0ff;
       text-decoration: none;
@@ -51,13 +72,31 @@
     a:hover {
       text-decoration: underline;
     }
+
+    /* Wonderchat widget center (floating) */
+    .wonderchat-widget {
+      bottom: 50% !important;
+      right: 50% !important;
+      transform: translate(50%, 50%) !important;
+      z-index: 9999 !important;
+    }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>Welcome to My AI Assistant</h1>
-    <p>Chat with our AI bot — it’s ready to assist you instantly!</p>
+  <div class="hero">
+    <h1>Meet Your AI Assistant</h1>
+    <p>Our AI-powered bot helps you with instant answers, guidance, and interactive support, all in one place. It’s fast, friendly, and ready 24/7!</p>
+
+    <h2>What it can do:</h2>
+    <ul>
+      <li>Answer your questions instantly</li>
+      <li>Provide personalized suggestions</li>
+      <li>Guide you through tasks step-by-step</li>
+      <li>Always available without waiting</li>
+    </ul>
+    
+    <p>Start chatting below and experience how your AI assistant can make life easier!</p>
   </div>
 
   <!-- Wonderchat script -->
@@ -71,16 +110,25 @@
     defer
   ></script>
 
-  <!-- Auto-open bot -->
+  <!-- Auto-open + center widget -->
   <script>
     window.addEventListener("load", () => {
       setTimeout(() => {
-        if (window.Wonderchat) window.Wonderchat.open();
-      }, 500); // opens 0.5 sec after page load
+        if (window.Wonderchat) {
+          window.Wonderchat.open();
+          const widget = document.querySelector(".wonderchat-widget");
+          if (widget) {
+            widget.style.bottom = "50%";
+            widget.style.right = "50%";
+            widget.style.transform = "translate(50%, 50%)";
+          }
+        }
+      }, 500);
     });
   </script>
 
 </body>
 </html>
+
 
 
